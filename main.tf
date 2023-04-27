@@ -42,7 +42,7 @@ resource "aws_instance" "blog" {
   }
 }
 
-module "alb" {
+module "blog_alb" {
   source  = "terraform-aws-modules/alb/aws"
   version = "~> 8.0"
 
@@ -88,7 +88,6 @@ module "blog_sg" {
   source  = "terraform-aws-modules/security-group/aws"
   version = "4.13.0"
 
-  // this is different
   vpc_id  = module.blog_vpc.vpc_id
   name    = "blog"
   ingress_rules = ["https-443-tcp","http-80-tcp"]
